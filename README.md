@@ -252,8 +252,8 @@ Status: Running | FPS: 2 | Model: ✅ Loaded
 
 ```bash
 # Clone repository
-git clone https://github.com/[username]/SMARTM2M.git
-cd SMARTM2M
+git clone https://github.com/fathindifa26/3D-Car-Classification.git
+cd 3D-Car-Classification
 
 # Install dependencies
 pip install torch torchvision torchaudio
@@ -304,12 +304,12 @@ print("✅ Model exported to ONNX format")
 
 #### GitHub Raw (Recommended)
 ```
-https://raw.githubusercontent.com/[username]/SMARTM2M/main/zoom_latest_checkpoint.onnx
+https://raw.githubusercontent.com/fathindifa/3D-Car-Classification/main/zoom_latest_checkpoint.onnx
 ```
 
 #### Google Drive
 ```
-https://drive.google.com/uc?export=download&id=[file_id]
+https://drive.google.com/uc?export=download&id=1_-kO_rgBgRJTJ1U2eDvfqs1jeMe0YWWg
 ```
 
 #### Custom Server
@@ -464,7 +464,7 @@ This project is created for educational purposes focusing on:
 ```
 MIT License
 
-Copyright (c) 2025 SmartM2M Project
+Copyright (c) 2025 Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -503,12 +503,6 @@ SOFTWARE.
 - Update documentation
 - Ensure cross-browser compatibility
 
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/[username]/SMARTM2M/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/[username]/SMARTM2M/discussions)
-- **Email**: [your-email@domain.com](mailto:your-email@domain.com)
-
 ---
 
 ## 🔗 Quick Links
@@ -518,7 +512,6 @@ SOFTWARE.
 | 📁 **Model Code** | [`model/vgg.py`](model/vgg.py) |
 | 🌐 **Web Predictor** | [`predict.js`](predict.js) |
 | 🤖 **ONNX Model** | `zoom_latest_checkpoint.onnx` |
-| 🐛 **Report Issues** | [GitHub Issues](https://github.com/[username]/SMARTM2M/issues) |
 | 📖 **Documentation** | [Wiki][def] |
 
 ## 💡 Pro Tips
@@ -564,4 +557,5 @@ try {
 **Made with ❤️ for the AI community**
 
 </div>
+
 
