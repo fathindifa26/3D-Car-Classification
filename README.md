@@ -7,6 +7,14 @@
 
 > Real-time AI-powered car component detection system using VGG-Lite architecture for multi-label classification of doors and hood status.
 
+# 🚗 Car Component Detection System
+
+![Tutorial Penggunaan SmartM2M](assets/tutorial/tutorial.gif)
+
+[📖 **Full Tutorial & Dokumentasi**](https://drive.google.com/file/d/ID_FILE_TUTORIAL/view?usp=sharing)
+
+
+
 ## 📋 Table of Contents
 - [Overview](#overview)
 - [Features](#features)
