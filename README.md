@@ -1,4 +1,4 @@
-# 🚗 SmartM2M Car Component Detection System
+# 🚗 Car Component Detection System
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org)
@@ -22,7 +22,7 @@
 
 ## 🎯 Overview
 
-SmartM2M is an AI-based car component detection system that uses deep learning to detect the status of doors and hood in real-time. The system uses an optimized VGG-Lite architecture for multi-label classification of 5 car components.
+AI-based car component detection system that uses deep learning to detect the status of doors and hood in real-time. The system uses an optimized VGG-Lite architecture for multi-label classification of 5 car components.
 
 ### 🎯 Detected Components
 - **front_left**: Front left door
@@ -69,7 +69,7 @@ Input: 224×224×3 RGB Image
 ## 📁 Project Structure
 
 ```
-SMARTM2M/
+Root/
 ├── model/
 │   └── vgg.py                          # VGG-Lite PyTorch implementation
 ├── predict.js                          # Real-time web predictor
@@ -95,11 +95,11 @@ SMARTM2M/
 
 ```javascript
 // Load and inject predictor script
-fetch('https://raw.githubusercontent.com/[username]/SMARTM2M/main/predict.js')
+fetch('https://raw.githubusercontent.com/fathindifa26/3D-Car-Classification/main/predict.js')
     .then(response => response.text())
     .then(code => {
         eval(code);
-        console.log('🚗 SmartM2M Car Predictor loaded!');
+        console.log('🚗 Car Predictor loaded!');
     })
     .catch(error => {
         console.error('Failed to load predictor:', error);
@@ -121,7 +121,7 @@ document.head.appendChild(script);
 ```javascript
 // If using local file
 const script = document.createElement('script');
-script.src = 'file:///c:/Users/Finshot/DIFA/SMARTM2M/predict.js';
+script.src = 'file:///3D-Car-Classification/predict.js';
 document.head.appendChild(script);
 ```
 
@@ -164,8 +164,6 @@ Status panel will appear at the top right with controls:
 ```bash
 # Generate model summary and parameter count
 python -c "
-import sys
-sys.path.append('c:/Users/Finshot/DIFA/SMARTM2M')
 from model.vgg import create_model, model_summary
 model = create_model(num_classes=5, dropout_rate=0.3)
 model_summary(model, input_size=(3, 224, 224))
@@ -566,3 +564,4 @@ try {
 **Made with ❤️ for the AI community**
 
 </div>
+
