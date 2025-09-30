@@ -22,24 +22,24 @@
 
 ## 🎯 Overview
 
-SmartM2M adalah sistem deteksi komponen mobil berbasis AI yang menggunakan deep learning untuk mendeteksi status pintu dan kap mesin secara real-time. Sistem ini menggunakan arsitektur VGG-Lite yang dioptimalkan untuk klasifikasi multi-label pada 5 komponen mobil.
+SmartM2M is an AI-based car component detection system that uses deep learning to detect the status of doors and hood in real-time. The system uses an optimized VGG-Lite architecture for multi-label classification of 5 car components.
 
 ### 🎯 Detected Components
-- **front_left**: Pintu depan kiri
-- **front_right**: Pintu depan kanan  
-- **rear_left**: Pintu belakang kiri
-- **rear_right**: Pintu belakang kanan
-- **hood**: Kap mesin
+- **front_left**: Front left door
+- **front_right**: Front right door
+- **rear_left**: Rear left door
+- **rear_right**: Rear right door
+- **hood**: Hood
 
 ## ✨ Features
 
-- 🚀 **Real-time Detection**: 2 FPS inference dengan ONNX Runtime
-- 🎯 **Multi-label Classification**: Deteksi simultan 5 komponen
-- 🌐 **Web-based**: Inject langsung ke browser console
-- 📱 **Responsive UI**: Status panel real-time dengan animasi
-- 🔧 **Adjustable Threshold**: Threshold detection dapat disesuaikan
-- 📊 **Debug Mode**: Comprehensive logging dan sample frame export
-- 🎭 **Mock Mode**: Demo mode ketika model tidak tersedia
+- 🚀 **Real-time Detection**: 2 FPS inference with ONNX Runtime
+- 🎯 **Multi-label Classification**: Simultaneous detection of 5 components
+- 🌐 **Web-based**: Direct injection into browser console
+- 📱 **Responsive UI**: Real-time status panel with animation
+- 🔧 **Adjustable Threshold**: Customizable detection threshold
+- 📊 **Debug Mode**: Comprehensive logging and sample frame export
+- 🎭 **Mock Mode**: Demo mode when model is unavailable
 
 ## 🏗️ Architecture
 
@@ -89,27 +89,27 @@ SMARTM2M/
 
 ### Method 1: Browser Console Injection (Recommended)
 
-1. **Buka halaman web dengan video/camera stream**
-2. **Buka Developer Console** (`F12` atau `Ctrl+Shift+I`)
-3. **Copy dan paste kode berikut:**
+1. **Open a web page with video/camera stream**
+2. **Open Developer Console** (`F12` or `Ctrl+Shift+I`)
+3. **Copy and paste the following code:**
 
 ```javascript
-// Load dan inject predictor script
+// Load and inject predictor script
 fetch('https://raw.githubusercontent.com/[username]/SMARTM2M/main/predict.js')
-  .then(response => response.text())
-  .then(code => {
-    eval(code);
-    console.log('🚗 SmartM2M Car Predictor loaded!');
-  })
-  .catch(error => {
-    console.error('Failed to load predictor:', error);
-  });
+    .then(response => response.text())
+    .then(code => {
+        eval(code);
+        console.log('🚗 SmartM2M Car Predictor loaded!');
+    })
+    .catch(error => {
+        console.error('Failed to load predictor:', error);
+    });
 ```
 
 ### Method 2: Direct Script Injection
 
 ```javascript
-// Create dan inject script element
+// Create and inject script element
 const script = document.createElement('script');
 script.src = 'https://your-domain.com/path/to/predict.js';
 script.onload = () => console.log('🚗 Predictor loaded!');
@@ -119,7 +119,7 @@ document.head.appendChild(script);
 ### Method 3: Local File
 
 ```javascript
-// Jika file local
+// If using local file
 const script = document.createElement('script');
 script.src = 'file:///c:/Users/Finshot/DIFA/SMARTM2M/predict.js';
 document.head.appendChild(script);
@@ -129,7 +129,7 @@ document.head.appendChild(script);
 
 ### Console Commands
 
-Setelah inject berhasil, gunakan command berikut di browser console:
+After successful injection, use the following commands in browser console:
 
 ```javascript
 // Get current predictions
@@ -151,18 +151,18 @@ console.log('Model loaded:', carPredictor.modelLoaded);
 
 ### UI Controls
 
-Status panel akan muncul di kanan atas dengan kontrol:
+Status panel will appear at the top right with controls:
 
 - **PAUSE/START**: Toggle prediction
-- **CLOSE**: Tutup predictor
-- **Real-time status**: Component status dengan confidence scores
+- **CLOSE**: Close predictor
+- **Real-time status**: Component status with confidence scores
 
 ## 📊 Model Information
 
 ### Generate Model Summary
 
 ```bash
-# Generate model summary dan parameter count
+# Generate model summary and parameter count
 python -c "
 import sys
 sys.path.append('c:/Users/Finshot/DIFA/SMARTM2M')
@@ -193,22 +193,22 @@ Non-trainable params: 0
 ### Training Pipeline Matching
 
 ```python
-# Preprocessing pipeline yang sama dengan training
+# Preprocessing pipeline matching training
 def preprocess_image(image):
-    # 1. Resize to 1.1x (246×246)
-    resized = transforms.Resize((246, 246))(image)
-    
-    # 2. Center crop to 224×224  
-    cropped = transforms.CenterCrop(224)(resized)
-    
-    # 3. Convert to tensor dan normalize
-    tensor = transforms.ToTensor()(cropped)
-    normalized = transforms.Normalize(
-        mean=[0.485, 0.456, 0.406],  # ImageNet mean
-        std=[0.229, 0.224, 0.225]    # ImageNet std
-    )(tensor)
-    
-    return normalized
+        # 1. Resize to 1.1x (246×246)
+        resized = transforms.Resize((246, 246))(image)
+        
+        # 2. Center crop to 224×224  
+        cropped = transforms.CenterCrop(224)(resized)
+        
+        # 3. Convert to tensor and normalize
+        tensor = transforms.ToTensor()(cropped)
+        normalized = transforms.Normalize(
+                mean=[0.485, 0.456, 0.406],  # ImageNet mean
+                std=[0.229, 0.224, 0.225]    # ImageNet std
+        )(tensor)
+        
+        return normalized
 ```
 
 ## 🌐 Web Predictor
@@ -233,9 +233,9 @@ Status: Running | FPS: 2 | Model: ✅ Loaded
 
 - **Real-time Updates**: 500ms interval (2 FPS)
 - **Color Coding**: 
-  - 🟢 Green: CLOSE (normal)
-  - 🔴 Red: OPEN (detected)
-- **Confidence Scores**: Percentage confidence untuk setiap prediksi
+    - 🟢 Green: CLOSE (normal)
+    - 🔴 Red: OPEN (detected)
+- **Confidence Scores**: Percentage confidence for each prediction
 - **Status Indicators**: Model loaded, FPS counter, running status
 
 ### Technical Details
@@ -243,9 +243,9 @@ Status: Running | FPS: 2 | Model: ✅ Loaded
 | Aspect | Implementation |
 |--------|----------------|
 | **Framework** | Vanilla JavaScript + ONNX Runtime Web |
-| **UI** | Pure CSS dengan fixed positioning |
+| **UI** | Pure CSS with fixed positioning |
 | **Input** | Canvas stream capture |
-| **Preprocessing** | Exact match dengan training pipeline |
+| **Preprocessing** | Exact match with training pipeline |
 | **Output** | Sigmoid probabilities → binary threshold |
 
 ## 🔧 Development
@@ -269,10 +269,10 @@ pip install onnx onnxruntime
 ### Training New Model
 
 ```bash
-# Train model dengan default settings
+# Train model with default settings
 python train.py
 
-# Atau gunakan main.py untuk full pipeline
+# Or use main.py for full pipeline
 python main.py
 ```
 
@@ -290,13 +290,13 @@ model.eval()
 # Export to ONNX
 dummy_input = torch.randn(1, 3, 224, 224)
 torch.onnx.export(
-    model, 
-    dummy_input, 
-    "zoom_latest_checkpoint.onnx",
-    input_names=['input'],
-    output_names=['output'],
-    dynamic_axes={'input': {0: 'batch_size'}},
-    opset_version=11
+        model, 
+        dummy_input, 
+        "zoom_latest_checkpoint.onnx",
+        input_names=['input'],
+        output_names=['output'],
+        dynamic_axes={'input': {0: 'batch_size'}},
+        opset_version=11
 )
 
 print("✅ Model exported to ONNX format")
@@ -318,8 +318,8 @@ https://drive.google.com/uc?export=download&id=[file_id]
 ```javascript
 // Update model URLs in predict.js
 const modelUrls = [
-    "https://your-server.com/zoom_latest_checkpoint.onnx",
-    "https://backup-server.com/zoom_latest_checkpoint.onnx"
+        "https://your-server.com/zoom_latest_checkpoint.onnx",
+        "https://backup-server.com/zoom_latest_checkpoint.onnx"
 ];
 ```
 
@@ -329,14 +329,14 @@ const modelUrls = [
 
 ```javascript
 class RealTimeCarPredictor {
-    constructor()                           // Initialize predictor
-    async init()                           // Load ONNX runtime dan model
-    getCurrentPredictions()                // Get current binary predictions
-    setThreshold(threshold)                // Set detection threshold (0-1)
-    startPrediction()                      // Start prediction loop
-    stopPrediction()                       // Stop prediction loop
-    togglePrediction()                     // Toggle start/stop
-    stop()                                 // Cleanup dan remove UI
+        constructor()                           // Initialize predictor
+        async init()                           // Load ONNX runtime and model
+        getCurrentPredictions()                // Get current binary predictions
+        setThreshold(threshold)                // Set detection threshold (0-1)
+        startPrediction()                      // Start prediction loop
+        stopPrediction()                       // Stop prediction loop
+        togglePrediction()                     // Toggle start/stop
+        stop()                                 // Cleanup and remove UI
 }
 ```
 
@@ -373,18 +373,18 @@ console.log("Max confidence:", Math.max(...predictions));
 ### Sample Frame Export
 
 ```javascript
-// 10% chance untuk save sample frames untuk debugging
+// 10% chance to save sample frames for debugging
 // Saves as: sample_frame_[timestamp].png
-// Uncomment di captureCurrentFrame() untuk enable
+// Uncomment in captureCurrentFrame() to enable
 ```
 
 ### Error Handling
 
 ```javascript
-// Automatic fallback ke mock predictions
+// Automatic fallback to mock predictions
 if (!modelLoaded) {
-    console.log("🔄 Using mock predictions for demo...");
-    predictions = generateMockPredictions();
+        console.log("🔄 Using mock predictions for demo...");
+        predictions = generateMockPredictions();
 }
 ```
 
@@ -397,7 +397,7 @@ if (!modelLoaded) {
 // Check if canvas element exists
 const canvas = document.querySelector('canvas');
 if (!canvas) {
-    console.error("No canvas element found on page");
+        console.error("No canvas element found on page");
 }
 
 // Solution: Navigate to page with video/canvas element
@@ -405,10 +405,10 @@ if (!canvas) {
 
 #### 2. Model loading fails
 ```javascript
-// Check network dan CORS issues
-// Model akan fallback ke mock predictions
+// Check network and CORS issues
+// Model will fallback to mock predictions
 
-// Solution: Host model di GitHub atau server dengan CORS enabled
+// Solution: Host model on GitHub or server with CORS enabled
 ```
 
 #### 3. Low accuracy/false positives
@@ -446,13 +446,13 @@ window.carPredictor = new RealTimeCarPredictor();
 
 ### Learning Objectives
 
-Proyek ini dibuat untuk tujuan edukasi dengan fokus pada:
+This project is created for educational purposes focusing on:
 
-- **Deep Learning**: Implementation CNN untuk computer vision
+- **Deep Learning**: CNN implementation for computer vision
 - **Model Optimization**: Lightweight architecture design  
-- **Web Deployment**: Real-time inference di browser
-- **Multi-label Classification**: Simultaneous prediction multiple outputs
-- **JavaScript Integration**: AI model integration dengan web technology
+- **Web Deployment**: Real-time inference in browser
+- **Multi-label Classification**: Simultaneous prediction of multiple outputs
+- **JavaScript Integration**: AI model integration with web technology
 
 ### Academic Applications
 
@@ -499,9 +499,9 @@ SOFTWARE.
 
 ### Development Guidelines
 
-- Follow PEP 8 untuk Python code
+- Follow PEP 8 for Python code
 - Use meaningful commit messages
-- Add tests untuk new features
+- Add tests for new features
 - Update documentation
 - Ensure cross-browser compatibility
 
@@ -521,7 +521,7 @@ SOFTWARE.
 | 🌐 **Web Predictor** | [`predict.js`](predict.js) |
 | 🤖 **ONNX Model** | `zoom_latest_checkpoint.onnx` |
 | 🐛 **Report Issues** | [GitHub Issues](https://github.com/[username]/SMARTM2M/issues) |
-| 📖 **Documentation** | [Wiki](https://github.com/[username]/SMARTM2M/wiki) |
+| 📖 **Documentation** | [Wiki][def] |
 
 ## 💡 Pro Tips
 
@@ -542,18 +542,18 @@ console.timeEnd('prediction');
 # Feature visualization
 features = model.get_feature_maps(input_tensor)
 for layer_name, feature_map in features.items():
-    print(f"{layer_name}: {feature_map.shape}")
+        print(f"{layer_name}: {feature_map.shape}")
 ```
 
 ### For Production
 ```javascript
 // Error handling
 try {
-    const predictions = carPredictor.getCurrentPredictions();
-    // Handle predictions
+        const predictions = carPredictor.getCurrentPredictions();
+        // Handle predictions
 } catch (error) {
-    console.error('Prediction failed:', error);
-    // Fallback logic
+        console.error('Prediction failed:', error);
+        // Fallback logic
 }
 ```
 
