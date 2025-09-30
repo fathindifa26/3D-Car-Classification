@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚗 SmartM2M Car Component Detection Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .demo-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 4px 15px 0 rgba(255, 107, 107, 0.4);
+        }
+
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px 0 rgba(255, 107, 107, 0.6);
+        }
+
+        .demo-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+            border-left: 4px solid #f39c12;
+        }
+
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .console-code {
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            text-align: left;
+            overflow-x: auto;
+            font-size: 0.9em;
+            border: 1px solid #34495e;
+            cursor: pointer;
+        }
+
+        .console-code:hover {
+            background: #34495e;
+            border-color: #3498db;
+        }
+
+        .success {
+            background: rgba(46, 213, 115, 0.2);
+            border: 1px solid #2ed573;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer {
+            margin-top: 20px;
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚗 SmartM2M Demo</h1>
+        <p class="subtitle">Real-time Car Component Detection System</p>
+        
+        <div class="instructions">
+            <h3>🎯 How to Use:</h3>
+            <div class="step">
+                <strong>Step 1:</strong> Click the button below to open the demo website
+            </div>
+            <div class="step">
+                <strong>Step 2:</strong> Press <code>F12</code> to open Developer Console
+            </div>
+            <div class="step">
+                <strong>Step 3:</strong> Copy and paste the code provided below
+            </div>
+            <div class="step">
+                <strong>Step 4:</strong> Press Enter and watch the AI predictor activate!
+            </div>
+            
+            <button class="demo-button pulse" onclick="openDemoSite()">
+                🌐 Open Demo Website
+            </button>
+            
+            <div class="console-code" id="console-code-block" onclick="copyToClipboard(this)" title="Click to copy">
+/* SmartM2M AI Predictor - Copy and paste this entire code block: */
+
+console.log('🔍 Starting SmartM2M predictor loading...');
+
+fetch('https://raw.githubusercontent.com/fathindifa26/3D-Car-Classification/main/predict.js')
+  .then(response => {
+    console.log('🔍 Fetch response status:', response.status);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    return response.text();
+  })
+  .then(code => {
+    console.log('🔍 Script content loaded, size:', code.length, 'characters');
+    console.log('🔍 Executing script...');
+    
+    eval(code);
+    
+    console.log('✅ SmartM2M AI Predictor loaded successfully!');
+    console.log('📊 Check the top-right panel for real-time predictions');
+    
+    if (window.carPredictor) {
+      console.log('✅ carPredictor object ready');
+      console.log('🎯 Available commands: carPredictor.getCurrentPredictions()');
+    } else {
+      console.warn('⚠️ carPredictor object not found');
+    }
+  })
+  .catch(error => {
+    console.error('❌ Failed to load SmartM2M predictor:', error);
+    alert('❌ Failed to load predictor: ' + error.message);
+  });
+            </div>
+            
+            <div class="success">
+                <strong>✅ Expected Result:</strong> AI status panel will appear in the top-right corner with real-time car component detection!
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h4>🧠 AI Model</h4>
+                <p>VGG-Lite CNN<br>140K parameters</p>
+            </div>
+            <div class="feature">
+                <h4>🎯 Detection</h4>
+                <p>5 Components<br>Multi-label</p>
+            </div>
+            <div class="feature">
+                <h4>⚡ Performance</h4>
+                <p>2 FPS<br>Real-time</p>
+            </div>
+            <div class="feature">
+                <h4>🌐 Browser</h4>
+                <p>ONNX Runtime<br>No install</p>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>🎮 Console Commands (After Loading):</h3>
+            <div class="console-code" onclick="copyToClipboard(this)" title="Click to copy">
+/* Get current predictions */
+carPredictor.getCurrentPredictions();
+
+/* Adjust sensitivity (0.0 - 1.0) */
+carPredictor.setThreshold(0.7);  /* Less sensitive */
+carPredictor.setThreshold(0.3);  /* More sensitive */
+
+/* Stop/start prediction */
+carPredictor.stop();
+carPredictor.startPrediction();
+
+/* Check status */
+console.log('Running:', carPredictor.isRunning);
+console.log('Model loaded:', carPredictor.modelLoaded);
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🔬 <strong>SmartM2M Project</strong> - AI-powered Car Component Detection</p>
+            <p>Developed for real-time computer vision demonstration</p>
+        </div>
+    </div>
+
+    <script>
+        console.log(`
+🚗 SmartM2M Car Component Detection Demo
+========================================
+Ready to demonstrate AI-powered computer vision! 🚀
+        `);
+
+        function openDemoSite() {
+            console.log("🌐 Opening demo website...");
+            
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '🌐 Opening...';
+            button.disabled = true;
+            
+            const demoWindow = window.open(
+                'https://euphonious-concha-ab5c5d.netlify.app/',
+                '_blank',
+                'width=1200,height=800,scrollbars=yes,resizable=yes'
+            );
+            
+            if (!demoWindow) {
+                alert('❌ Pop-up blocked! Please allow pop-ups and try again.');
+                button.innerHTML = originalText;
+                button.disabled = false;
+                return;
+            }
+            
+            // Highlight the console code
+            const codeBlock = document.getElementById('console-code-block');
+            codeBlock.style.background = '#1e3a8a';
+            codeBlock.style.border = '2px solid #3b82f6';
+            codeBlock.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.5)';
+            
+            setTimeout(() => {
+                button.innerHTML = '✅ Website Opened!';
+                button.style.background = 'linear-gradient(45deg, #2ecc71, #27ae60)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = 'linear-gradient(45deg, #ff6b6b, #ee5a24)';
+                    button.disabled = false;
+                }, 2000);
+            }, 500);
+
+            setTimeout(() => {
+                alert(`🎯 Next Steps:
+1. Press F12 in the demo window to open console
+2. Copy the highlighted code block above (click to copy)
+3. Paste into console and press Enter
+4. Watch the AI predictor activate! 🚀`);
+            }, 1000);
+        }
+
+        function copyToClipboard(element) {
+            const text = element.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalBg = element.style.background;
+                element.style.background = '#27ae60';
+                element.style.border = '2px solid #2ecc71';
+                
+                setTimeout(() => {
+                    element.style.background = originalBg;
+                    element.style.border = '1px solid #34495e';
+                }, 1000);
+                
+                console.log('✅ Code copied to clipboard!');
+            }).catch(err => {
+                console.log('❌ Failed to copy, please select and copy manually');
+                element.select();
+            });
+        }
+    </script>
+</body>
+</html>
