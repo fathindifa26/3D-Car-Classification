@@ -10,6 +10,9 @@
 # 🚗 Car Component Detection System
 
 ![Tutorial Penggunaan SmartM2M](assets/tutorial/tutorial.gif)
+> **How to use:**  
+> **1.** Click the **SmartM2M_Demo.html** file in your project folder to open the demo launcher.  
+> **2.** Follow the instructions on the demo page to run the AI predictor interactively.
 
 [📖 **Full Tutorial & Dokumentasi**](https://drive.google.com/file/d/ID_FILE_TUTORIAL/view?usp=sharing)
 
