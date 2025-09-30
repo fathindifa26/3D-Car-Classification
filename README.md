@@ -85,69 +85,77 @@ Root/
 └── experiments/                        # Training logs and checkpoints
 ```
 
+document.head.appendChild(script);
+document.head.appendChild(script);
+
 ## 🚀 Quick Start
 
-### Method 1: Browser Console Injection (Recommended)
+### Demo Instructions (Recommended)
 
-1. **Open a web page with video/camera stream**
-2. **Open Developer Console** (`F12` or `Ctrl+Shift+I`)
-3. **Copy and paste the following code:**
+1. **Double-click** `SmartM2M_Demo.html` to open the demo launcher.
+2. **Click** "Open Demo Website" (button in the launcher).
+3. **In the demo window, press** `F12` to open Developer Console.
+4. **Click** the highlighted code block to copy (or select and copy manually).
+5. **Paste** into the console and press Enter.
+6. **Watch the AI predictor panel appear in the top-right corner!**
 
+#### Code to Copy (from demo launcher):
 ```javascript
-// Load and inject predictor script
+/* SmartM2M AI Predictor - Copy and paste this entire code block: */
+
+console.log('🔍 Starting SmartM2M predictor loading...');
+
 fetch('https://raw.githubusercontent.com/fathindifa26/3D-Car-Classification/main/predict.js')
-    .then(response => response.text())
-    .then(code => {
-        eval(code);
-        console.log('🚗 Car Predictor loaded!');
-    })
-    .catch(error => {
-        console.error('Failed to load predictor:', error);
-    });
+        .then(response => {
+                console.log('🔍 Fetch response status:', response.status);
+                if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.text();
+        })
+        .then(code => {
+                console.log('🔍 Script content loaded, size:', code.length, 'characters');
+                console.log('🔍 Executing script...');
+                eval(code);
+                console.log('✅ SmartM2M AI Predictor loaded successfully!');
+                console.log('📊 Check the top-right panel for real-time predictions');
+                if (window.carPredictor) {
+                        console.log('✅ carPredictor object ready');
+                        console.log('🎯 Available commands: carPredictor.getCurrentPredictions()');
+                } else {
+                        console.warn('⚠️ carPredictor object not found');
+                }
+        })
+        .catch(error => {
+                console.error('❌ Failed to load SmartM2M predictor:', error);
+                alert('❌ Failed to load predictor: ' + error.message);
+        });
 ```
 
-### Method 2: Direct Script Injection
-
-```javascript
-// Create and inject script element
-const script = document.createElement('script');
-script.src = 'https://your-domain.com/path/to/predict.js';
-script.onload = () => console.log('🚗 Predictor loaded!');
-document.head.appendChild(script);
-```
-
-### Method 3: Local File
-
-```javascript
-// If using local file
-const script = document.createElement('script');
-script.src = 'file:///3D-Car-Classification/predict.js';
-document.head.appendChild(script);
-```
+---
 
 ## 🎮 Usage
 
-### Console Commands
 
-After successful injection, use the following commands in browser console:
+### Console Commands (After Loading)
 
 ```javascript
-// Get current predictions
+/* Get current predictions */
 carPredictor.getCurrentPredictions();
-// Output: {front_left: 0, front_right: 1, rear_left: 0, rear_right: 0, hood: 0}
 
-// Set detection threshold (0.0 - 1.0)
-carPredictor.setThreshold(0.7);  // Default: 0.5
+/* Adjust sensitivity (0.0 - 1.0) */
+carPredictor.setThreshold(0.7);  /* Less sensitive */
+carPredictor.setThreshold(0.3);  /* More sensitive */
 
-// Stop predictor
+/* Stop/start prediction */
 carPredictor.stop();
+carPredictor.startPrediction();
 
-// Check if running
-console.log('Status:', carPredictor.isRunning ? 'Running' : 'Stopped');
-
-// Get model info
+/* Check status */
+console.log('Running:', carPredictor.isRunning);
 console.log('Model loaded:', carPredictor.modelLoaded);
 ```
+
 
 ### UI Controls
 
@@ -157,18 +165,13 @@ Status panel will appear at the top right with controls:
 - **CLOSE**: Close predictor
 - **Real-time status**: Component status with confidence scores
 
+
 ## 📊 Model Information
 
 ### Generate Model Summary
 
 ```bash
-# Generate model summary and parameter count
-python -c "
-from model.vgg import create_model, model_summary
-model = create_model(num_classes=5, dropout_rate=0.3)
-model_summary(model, input_size=(3, 224, 224))
-print(f'Total parameters: {model.count_parameters():,}')
-"
+python -c "from model.vgg import create_model, model_summary; model = create_model(num_classes=5, dropout_rate=0.3); model_summary(model, input_size=(3, 224, 224)); print(f'Total parameters: {model.count_parameters():,}')"
 ```
 
 ### Expected Output
@@ -246,57 +249,43 @@ Status: Running | FPS: 2 | Model: ✅ Loaded
 | **Preprocessing** | Exact match with training pipeline |
 | **Output** | Sigmoid probabilities → binary threshold |
 
+git clone https://github.com/fathindifa26/3D-Car-Classification.git
+
 ## 🔧 Development
 
 ### Local Development
 
 ```bash
-# Clone repository
 git clone https://github.com/fathindifa26/3D-Car-Classification.git
 cd 3D-Car-Classification
-
-# Install dependencies
-pip install torch torchvision torchaudio
-pip install opencv-python pillow numpy matplotlib
-pip install tensorboard scikit-learn
-
-# Install ONNX tools
-pip install onnx onnxruntime
+pip install torch torchvision onnx onnxruntime
 ```
+
 
 ### Training New Model
 
 ```bash
-# Train model with default settings
 python train.py
-
 # Or use main.py for full pipeline
 python main.py
 ```
+
+torch.onnx.export(
 
 ### Export to ONNX
 
 ```python
 import torch
 from model.vgg import create_model
-
-# Load trained model
 model = create_model(num_classes=5)
 model.load_state_dict(torch.load('BEST/best_model.pth'))
 model.eval()
-
-# Export to ONNX
 dummy_input = torch.randn(1, 3, 224, 224)
 torch.onnx.export(
-        model, 
-        dummy_input, 
-        "zoom_latest_checkpoint.onnx",
-        input_names=['input'],
-        output_names=['output'],
-        dynamic_axes={'input': {0: 'batch_size'}},
-        opset_version=11
+        model, dummy_input, "zoom_latest_checkpoint.onnx",
+        input_names=['input'], output_names=['output'],
+        dynamic_axes={'input': {0: 'batch_size'}}, opset_version=11
 )
-
 print("✅ Model exported to ONNX format")
 ```
 
