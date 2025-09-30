@@ -1,0 +1,13 @@
+torch>=2.0
+torchvision
+numpy
+pandas
+onnx
+onnxruntime
+tqdm
+scikit-learn
+matplotlib
+# Optional for TensorBoard logging (if used in trainer)
+tensorboard
+# Optional for argument parsing (already in Python >=3.2)
+argparse
