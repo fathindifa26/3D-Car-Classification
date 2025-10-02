@@ -77,7 +77,7 @@ class RealTimeCarPredictor {
       
       // Try multiple model URLs
       const modelUrls = [
-        "https://raw.githubusercontent.com/fathindifa26/smartm2m/main/zoom_latest_checkpoint.onnx",
+        "https://raw.githubusercontent.com/fathindifa26/3D-Car-Classification/main/zoom_latest_checkpoint.onnx",
         "https://drive.google.com/uc?export=download&id=1_-kO_rgBgRJTJ1U2eDvfqs1jeMe0YWWg"
       ];
       
